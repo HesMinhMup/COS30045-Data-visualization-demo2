@@ -16,6 +16,8 @@ onMounted(async () => {
   data.sort((a, b) => b.count - a.count); 
   const barChart = new BarChart(svg, data, "brand", "count");
   barChart.switchDirection();
+  barChart.setXLabel("Brand");
+  barChart.setYLabel("Count");
   barChart.render();
 });
 </script>

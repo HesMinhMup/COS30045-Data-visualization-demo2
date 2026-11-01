@@ -177,6 +177,16 @@ export default class Barchart {
                         .attr("fill", this.fillColor);
                 });
 
+            bars.selectAll(".bar-label")
+                .data(this.data)
+                .join("text")
+                .attr("class", "bar-label")
+                .attr("x", d =>
+                    scaleCategory(d[this.xAxis]) + scaleCategory.bandwidth() / 2
+                )
+                .attr("y", d => scaleValue(d[this.yAxis]) - 8)
+                .attr("text-anchor", "middle")
+                .text(d => d[this.yAxis]);
         } else {
             scaleCategory = d3.scaleBand()
                 .domain(this.data.map(d => d[this.xAxis]))
@@ -216,7 +226,31 @@ export default class Barchart {
                     d3.select(event.currentTarget)
                         .attr("fill", this.fillColor);
                 });
+            
+            bars.selectAll(".bar-label")
+                .data(this.data)
+                .join("text")
+                .attr("class", "bar-label")
+                .attr("x", d => scaleValue(d[this.yAxis]) + 8)
+                .attr("y", d =>
+                    scaleCategory(d[this.xAxis]) + scaleCategory.bandwidth() / 2
+                )
+                .attr("dominant-baseline", "middle")
+                .text(d => d[this.yAxis]);
         }
+
+        chart.append("text")
+            .attr("class", "x-axis-label")
+            .attr("text-anchor", "middle")
+            .attr("x", chartWidth / 2)
+            .attr("y", chartHeight + 45)
+            .text(this.direction === "vertical" ? this.xLabel : this.yLabel);
+
+        chart.append("text")
+            .attr("class", "y-axis-label")
+            .attr("text-anchor", "middle")
+            .attr("transform", `translate(-45, ${chartHeight / 2}) rotate(-90)`)
+            .text(this.direction === "vertical" ? this.yLabel : this.xLabel);
     }
 
 }
