@@ -243,13 +243,13 @@ export default class Barchart {
             .attr("class", "x-axis-label")
             .attr("text-anchor", "middle")
             .attr("x", chartWidth / 2)
-            .attr("y", chartHeight + 45)
+            .attr("y", chartHeight + 60)
             .text(this.direction === "vertical" ? this.xLabel : this.yLabel);
 
         chart.append("text")
             .attr("class", "y-axis-label")
             .attr("text-anchor", "middle")
-            .attr("transform", `translate(-45, ${chartHeight / 2}) rotate(-90)`)
+            .attr("transform", `translate(-60, ${chartHeight / 2}) rotate(-90)`)
             .text(this.direction === "vertical" ? this.yLabel : this.xLabel);
     }
 

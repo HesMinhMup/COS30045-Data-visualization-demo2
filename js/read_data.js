@@ -1,19 +1,18 @@
 import * as d3 from "d3";
-import csvUrl from "./data/tvBrandCount.csv?url";
 
-function readData() {
-    return d3.csv(csvUrl, d => {
+function readData(path) {
+    return d3.csv(path, d => {
         return {
-            brand: d.brand,
-            count: +d.count
+            Screen_Tech: d.Screen_Tech,
+            "Mean(Labelled energy consumption (kWh/year))": +d["Mean(Labelled energy consumption (kWh/year))"]
         };
 
         }).then(data => {
             console.log(data);
             console.log(data.length);
-            console.log(d3.max(data, d => d.count));
-            console.log(d3.min(data, d => d.count));
-            console.log(d3.extent(data, d => d.count));
+            console.log(d3.max(data, d => d["Mean(Labelled energy consumption (kWh/year))"]));
+            console.log(d3.min(data, d => d["Mean(Labelled energy consumption (kWh/year))"]));
+            console.log(d3.extent(data, d => d["Mean(Labelled energy consumption (kWh/year))"]));
 
             return data;
         });
