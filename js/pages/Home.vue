@@ -3,11 +3,13 @@ import { ref, onMounted } from 'vue';
 import * as d3 from 'd3';
 
 import readData from '../read_data';
+import readData52 from '../read_data52';
 import BarChart from '../charts/BarChart';
-import csvUrl from "../data/tvTechEnergy.csv?url";
+import LineChart from '../charts/LineChart';
 
 onMounted(async () => {
-  const data = await readData(csvUrl);
+  const data = await readData();
+  const data52 = await readData52();
 
   const svg = d3.select(".responsive-svg-container")
   .append("svg")
@@ -19,16 +21,37 @@ onMounted(async () => {
   barChart.setXLabel("Screen_Tech");
   barChart.setYLabel("Mean(Labelled energy consumption (kWh/year))");
   barChart.render();
+
+  const lineChartSvg = d3.select(".line-chart")
+  .append("svg")
+  .attr("class", "responsive-svg")
+  .attr("viewBox", "0 0 1200 1600")
+
+  const lineChart = new LineChart(lineChartSvg, data52, "year", "average_price");
+  lineChart.setXLabel("Year");
+  lineChart.setYLabel("Average Price");
+  lineChart.render();
 });
 </script>
 
 <template>
   <div class="responsive-svg-container">
   </div>
+
+  <div class="line-chart">
+  </div>
 </template>
 
 <style scoped>
 .responsive-svg-container {
+  border: 1px solid black;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.line-chart {
   border: 1px solid black;
   margin-right: auto;
   margin-left: auto;

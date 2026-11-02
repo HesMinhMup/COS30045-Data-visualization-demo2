@@ -1,7 +1,8 @@
 import * as d3 from "d3";
+import csvUrl from "./data/tvTechEnergy.csv?url";
 
-function readData(path) {
-    return d3.csv(path, d => {
+function readData() {
+    return d3.csv(csvUrl, d => {
         return {
             Screen_Tech: d.Screen_Tech,
             "Mean(Labelled energy consumption (kWh/year))": +d["Mean(Labelled energy consumption (kWh/year))"]
