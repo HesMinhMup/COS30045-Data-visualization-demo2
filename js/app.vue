@@ -5,7 +5,10 @@ import { RouterView, RouterLink } from 'vue-router';
 <template>
   <nav>
     <button>
-      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/">week4-5</RouterLink>
+    </button>
+    <button>
+      <RouterLink to="/week6">week6</RouterLink>
     </button>
     <button>
       <RouterLink to="/pic">Pic</RouterLink>
