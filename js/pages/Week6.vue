@@ -3,11 +3,16 @@ import { onMounted } from "vue";
 import * as d3 from "d3";
 import drawHistogram from "../week6/Histogram.js";
 import loadData from "../week6/load-data.js";
+import { populateFilters } from "../week6/Interaction.js";
+import { filters_screen } from "../week6/Shared-constants.js";
 
 onMounted(async () => {
-  const data = await loadData();
-  const histogramContainer = d3.select("#histogram");
-  drawHistogram(histogramContainer, data);
+    const data = await loadData();
+    const histogramContainer = d3.select("#histogram");
+    const filtersContainer = d3.select("#filters_screen");
+
+    populateFilters(filtersContainer, filters_screen, data);
+    drawHistogram(histogramContainer, data);
 });
 </script>
 
@@ -34,9 +39,15 @@ onMounted(async () => {
             Downloaded Jan 2026
         </p>
     </div>
+    <div id="filters_screen"></div>
 </main>
 
 <footer>
     <p>&copy; Data Visualisation Week 6</p>
 </footer>
 </template>
+
+<style scoped>
+@import "../../css/basic.css";
+@import "../../css/visualisation.css";
+</style>

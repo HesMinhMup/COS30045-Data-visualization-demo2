@@ -14,4 +14,11 @@ const yScale = d3.scaleLinear();
 
 const binGenerator = d3.bin().value(d => d.energyConsumption)
 
-export {margin, width, height, innerWidth, innerHeight, barColor, bodyBackgroundColor, xScale, yScale, binGenerator};
+const filters_screen = [
+    {id:"ALL", label:"ALL", isActive: true},
+    {id:"LED", label:"LED", isActive: false},
+    {id:"LCD", label:"LCD", isActive: false},
+    {id:"OLED", label:"OLED", isActive: false},
+]
+
+export {margin, width, height, innerWidth, innerHeight, barColor, bodyBackgroundColor, xScale, yScale, binGenerator, filters_screen};

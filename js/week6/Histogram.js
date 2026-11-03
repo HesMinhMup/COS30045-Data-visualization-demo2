@@ -35,10 +35,12 @@ function drawHistogram(container, data) {
     const yAxis = d3.axisLeft(yScale);
 
     innerChart.append("g")
+        .attr("class", "x-axis")
         .attr("transform", `translate(0, ${innerHeight})`)
         .call(xAxis);
 
     innerChart.append("g")
+        .attr("class", "y-axis")
         .call(yAxis);
 }
 
