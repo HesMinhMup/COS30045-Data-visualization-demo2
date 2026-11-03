@@ -47,7 +47,7 @@ onMounted(async () => {
 </footer>
 </template>
 
-<style scoped>
+<style>
 @import "../../css/basic.css";
 @import "../../css/visualisation.css";
 </style>
